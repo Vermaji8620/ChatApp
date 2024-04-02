@@ -8,9 +8,7 @@ export const getUsersForSidebar = async (req, res) => {
       _id: { $ne: loggedInUserId._id },
     }).select("-password");
 
-    res.status(200).json({
-      filteredUsers,
-    });
+    res.status(200).json(filteredUsers);
   } catch (error) {
     console.log("error in midd  --> ", error.message);
     res.status(500).json({
