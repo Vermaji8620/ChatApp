@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="p-4 h-screen flex items-center justify-center">
       <Routes>
-        <Route element={<Home />} path="/" />
+        <Route element={authUser ? <Home /> : <Login />} path="/" />
         <Route
           element={authUser ? <Navigate to="/" /> : <Login />}
           path="/login"
@@ -26,5 +26,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

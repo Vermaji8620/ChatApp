@@ -40,11 +40,9 @@ const useSignup = () => {
       });
       const data = await res.json();
       if (data.error) toast.error(data.error);
-
       localStorage.setItem("chat-user", JSON.stringify(data));
       setAuthUser(data);
     } catch (error) {
-      console.log(error.message);
       toast.error(error.message);
     } finally {
       setLoading(false);
