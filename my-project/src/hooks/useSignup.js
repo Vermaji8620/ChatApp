@@ -38,8 +38,14 @@ const useSignup = () => {
           confirmPassword,
         }),
       });
+
+      if (!res.ok) {
+        const data = await res.json();
+        toast.error(data.error || "Signup failed");
+        return;
+      }
+
       const data = await res.json();
-      if (data.error) toast.error(data.error);
       localStorage.setItem("chat-user", JSON.stringify(data));
       setAuthUser(data);
     } catch (error) {

@@ -6,10 +6,10 @@ export const login = async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
-    if (!user) return res.status(401).json({ message: "invalid credentials" });
+    if (!user)
+      return res.status(401).json({ error: "invalid credentiaaaaaaaaaals" });
     const compare = bcrypt.compareSync(password, user.password);
-    if (!compare)
-      return res.status(401).json({ message: "invalid credentials" });
+    if (!compare) return res.status(401).json({ error: "invalid credentials" });
 
     generateTokenandSetCookie(user._id, res);
     res.status(201).json({
@@ -20,7 +20,7 @@ export const login = async (req, res) => {
   } catch (error) {
     console.log("error occured in login ----->>", error.message);
     res.status(500).json({
-      message: "Error in login",
+      error: "Error in login",
     });
   }
 };
