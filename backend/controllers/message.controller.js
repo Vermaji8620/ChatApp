@@ -39,7 +39,7 @@ export const sendMessage = async (req, res) => {
 
     console.log("dd");
 
-    res.status(201).json({ newmessage });
+    res.status(201).json(newmessage);
   } catch (error) {
     console.log(error.message);
     res.status(500).json({

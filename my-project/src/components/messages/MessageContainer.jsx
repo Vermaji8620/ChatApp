@@ -6,7 +6,6 @@ import { useEffect } from "react";
 const MessageContainer = () => {
   const { selectedConversation, setSelectedConversation } = useConversation();
 
-  // when we unMount, i want the message-Container not to have anything
   useEffect(() => {
     return () => setSelectedConversation(null);
   }, [setSelectedConversation]);

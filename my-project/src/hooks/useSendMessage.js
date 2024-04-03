@@ -8,6 +8,7 @@ const useSendMessage = () => {
 
   const sendMessage = async (message) => {
     setLoading(true);
+    console.log(selectedConversation._id);
     try {
       const res = await fetch(
         `/api/messages/send/${selectedConversation._id}`,
@@ -19,7 +20,10 @@ const useSendMessage = () => {
           body: JSON.stringify({ message }),
         }
       );
-      const data = res.json();
+      console.log("gya res k andar");
+      console.log(res);
+      const data = await res.json();
+      console.log("gya baad me");
       if (data.error) throw new Error(data.error);
       setMessages([...messages, data]);
     } catch (error) {
