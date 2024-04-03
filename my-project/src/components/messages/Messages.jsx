@@ -1,9 +1,16 @@
+import { useEffect, useRef } from "react";
 import useGetMessages from "../../hooks/useGetMessages";
 import MessageSkeleton from "../skeletons/MessageSkeleton";
 import Message from "./Message";
 
 const Messages = () => {
   const { messages, loading } = useGetMessages();
+  const endofMessageRef = useRef(null);
+  useEffect(() => {
+    setTimeout(() => {
+      endofMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  }, [messages]);
   return (
     <div className="px-4 overflow-auto flex-1">
       {loading ? (
@@ -12,7 +19,9 @@ const Messages = () => {
         <p className="text-center">Send a message to start a conversation</p>
       ) : (
         messages.map((message) => (
-          <Message key={message._id} message={message} />
+          <div key={message._id} ref={endofMessageRef}>
+            <Message message={message} />
+          </div>
         ))
       )}
     </div>
