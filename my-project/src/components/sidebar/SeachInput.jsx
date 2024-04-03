@@ -9,6 +9,7 @@ const SeachInput = () => {
   const { setSelectedConversation } = useConversation();
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!inputValue) return;
     const finding = conversations.filter((conversation) =>
       conversation.fullName.includes(inputValue)
     );

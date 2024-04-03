@@ -1,6 +1,7 @@
 import express from "express";
+import { app, server } from "./socket/socket.js";
 import cookieParser from "cookie-parser";
-const app = express();
+// const app = express();
 app.use(cookieParser());
 import dotenv from "dotenv";
 dotenv.config();
@@ -22,5 +23,5 @@ mongoose
   })
   .catch((error) => console.log("error is", error))
   .then(() => {
-    app.listen(PORT, () => console.log("server is up and running"));
+    server.listen(PORT, () => console.log("server is up and running"));
   });
