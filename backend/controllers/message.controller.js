@@ -1,5 +1,6 @@
 import { Conversation } from "../models/conversation.model.js";
 import { Message } from "../models/message.model.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 export const sendMessage = async (req, res) => {
   try {
@@ -23,7 +24,7 @@ export const sendMessage = async (req, res) => {
 
     console.log("cc");
 
-    const newmessage = await Message.create({
+    const newMessage = await Message.create({
       senderId,
       receiverId,
       message,
@@ -31,15 +32,20 @@ export const sendMessage = async (req, res) => {
 
     console.log("fsfsdhfdshf");
 
-    if (newmessage) {
-      conversation.messages.push(newmessage._id);
+    if (newMessage) {
+      conversation.messages.push(newMessage._id);
       conversation.save();
     }
     console.log(conversation);
 
     console.log("dd");
 
-    res.status(201).json(newmessage);
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
+
+    res.status(201).json(newMessage);
   } catch (error) {
     console.log(error.message);
     res.status(500).json({
