@@ -19,7 +19,9 @@ const Conversation = ({ conversation }) => {
         <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-12 rounded-full">
             <img
-              src={conversation.profilePic}
+              src={
+                "https://th.bing.com/th/id/OIP.cSPj7LvJYHZOnzdIyFok2gHaHT?w=198&h=196&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+              }
               alt="https://th.bing.com/th/id/OIP.cSPj7LvJYHZOnzdIyFok2gHaHT?w=198&h=196&c=7&r=0&o=5&dpr=1.3&pid=1.7"
             />
           </div>

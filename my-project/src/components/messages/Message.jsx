@@ -20,9 +20,9 @@ const Message = ({ message }) => {
   console.log("selectedConversation", selectedConversation);
 
   const chatClassName = fromMe ? "chat-end" : "chat-start";
-  const profilePic = fromMe
-    ? authUser.profilePic
-    : selectedConversation.profilePic;
+  // const profilePic = fromMe
+  //   ? authUser.profilePic
+  //   : selectedConversation.profilePic;
   const bubbleBgColor = fromMe ? "bg-blue-500" : "";
 
   const getTime = extractTime(message.createdAt);
@@ -31,7 +31,12 @@ const Message = ({ message }) => {
     <div className={`chat ${chatClassName}`}>
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
-          <img alt="Tailwind CSS chat bubble component" src={profilePic} />
+          <img
+            alt="Tailwind CSS chat bubble component"
+            src={
+              "https://th.bing.com/th/id/OIP.cSPj7LvJYHZOnzdIyFok2gHaHT?w=198&h=196&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+            }
+          />
         </div>
       </div>
       <div className={`chat-bubble text-white ${bubbleBgColor}`}>
